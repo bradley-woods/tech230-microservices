@@ -79,9 +79,13 @@ Microservices architecture allows for independent development, deployment, and s
 
 Monolithic architecture builds the application as a single unit, while two-tier architecture has a client-side user interface interacting directly with a server-side application or database. Microservices architecture divides an application into small, independent services for flexibility and scalability.
 
+![Microservices vs Monolithic](images/monolithic-vs-microservices.png)
+
 ## What is Docker?
 
 Docker is an open-source platform for automating application deployment, scaling, and management using containerisation. Containers are lightweight, isolated environments that package an application and its dependencies. Docker allows you to create and manage containers, ensuring consistency across different environments.
+
+![Docker Architecture](images/docker-architecture.png)
 
 ### Docker key components
 
