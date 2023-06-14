@@ -1,14 +1,14 @@
 # Microservices using Docker Compose
 
-This guide outlines how to use Docker Compose to orchestrate each container's service to launch the NodeJS application, the Mongo database and run Nginx as a reverse proxy using Docker Compose as shown [here]().
+This guide outlines how to use Docker Compose to orchestrate each container's service to launch the NodeJS application, the Mongo database and run Nginx as a reverse proxy using Docker Compose as shown [here](https://github.com/bradley-woods/tech230-microservices/blob/main/docker-compose.yml).
 
-![Microservices Architecture Diagram]()
+![Microservices Architecture Diagram](images/docker-diagram.png)
 
-- **node-app:** This service runs a Node.js application using the `bradleywoods/node-app:v2` image. It is accessible on port 3000 and depends on the `mongo-database` service. It also has an environment variable `DB_HOST set to mongodb://mongo-database:27017/posts`.
+- **Nginx Reverse Proxy:** This service runs an Nginx reverse proxy using the official `nginx` image. It is accessible on port 80 and depends on the `node-app` service. It mounts the `default.conf` file from the local directory.
 
-- **mongo-database:** This service runs a MongoDB database using the `mongo:3.2` image. It is accessible on port 27017. It mounts the `mongod.conf` file from the local directory.
+- **NodeJS App:** This service runs a Node.js application using the `bradleywoods/node-app:v2` image. It is accessible on port 3000 and depends on the `mongo-database` service. It also has an environment variable `DB_HOST set to mongodb://mongo-database:27017/posts`.
 
-- **nginx-reverse-proxy:** This service runs an Nginx reverse proxy using the official `nginx` image. It is accessible on port 80 and depends on the `node-app` service. It mounts the `default.conf` file from the local directory.
+- **Mongo Database:** This service runs a MongoDB database using the `mongo:3.2` image. It is accessible on port 27017. It mounts the `mongod.conf` file from the local directory.
 
 1. The first step is to create a 'docker-compose.yml' file which outlines each services and declares the state of each using the YAML language.
 
@@ -71,6 +71,8 @@ This guide outlines how to use Docker Compose to orchestrate each container's se
     ```bash
     $ docker compose up
     ```
+
+    ![Docker Desktop](images/docker-desktop.png)
 
 8. To remove the entire container stack use the command:
 
