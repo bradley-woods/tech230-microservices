@@ -6,7 +6,7 @@ Pre-requisites:
 
 - Download and install [Docker Desktop](https://www.docker.com/)
 
-## Running Docker Images
+## Running Nginx Docker Image
 
 1. Use the `docker run` command to run the official Nginx image, whereby if Docker cannot find the image locally it will download it automatically from Docker Hub
 
@@ -126,3 +126,45 @@ Pre-requisites:
     ```
 
     ![Docker Hub](images/docker-hub.png)
+
+## Running MongoDB Docker Image
+
+1. Firstly you can pull the mongo image from the official Docker Hub page using the command:
+
+    ```bash
+    $ docker pull mongo
+
+    $ docker run -d -p 27017:27017 mongo
+    ```
+
+2. Log into the container running MongoDB:
+
+    ```bash
+    $ docker exec -it <container-id/name> sh
+    ```
+
+3. Once logged in, install sudo and nano editor, then navigate to the MongoDB configuration and edit it to change the Bind IP from '127.0.0.1' to '0.0.0.0':
+
+    ```bash
+    $ apt update -y
+
+    $ apt upgrade -y
+
+    $ apt install sudo -y
+
+    $ sudo apt install nano -y
+
+    $ sudo nano etc/mongod.conf.orig
+    ```
+
+4. Now we can `commit` our container and make a custom Docker image using the following command:
+
+    ```bash
+    $ docker commit <container-id/image> <namespace/repository-name>:<optional-tag>
+    ```
+
+5. Finally, we can push our custom MongoDB image to Docker Hub using the `push` command as follows:
+
+    ```bash
+    docker push <namespace/repository-name>:<optional-tag>
+    ```
