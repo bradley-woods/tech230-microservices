@@ -17,3 +17,7 @@ spec:
         image: bradleywoods/node-app:v2 # The image to use for the container
         ports:
         - containerPort: 3000 # Specifies the port to expose on the container
+        env: # Creating an Environment variable for connecting to MongoDB
+        - name: DB_HOST
+          value: "mongodb://mongo-db-svc:27017/posts"
+          

@@ -1,0 +1,19 @@
+apiVersion: apps/v1 # Specifies the API version to use
+kind: Deployment # Specifies the kind of object to create, in this case, a Deployment                         
+metadata:
+  name: mongo-db-deployment # The name of the Deployment                 
+spec:
+  selector:
+    matchLabels:
+      app: mongo-database # Selects Pods with labels matching "app: nginx"
+  replicas: 3 # Creates a replica set with 3 instances/pods                        
+  template: # Specifies the template for creating Pods                               
+    metadata:
+      labels:
+        app: mongo-database # The labels for the Pods created from this template                       
+    spec:
+      containers: # Specifies the containers to run in the Pod                     
+      - name: mongo-database # The name of the container                     
+        image: bradleywoods/mongo-database:v2 # The image to use for the container
+        ports:
+        - containerPort: 27017 # Specifies the port to expose on the container
