@@ -1,0 +1,19 @@
+apiVersion: apps/v1 # Specifies the API version to use
+kind: Deployment # Specifies the kind of object to create, in this case, a Deployment                         
+metadata:
+  name: nginx-deployment # The name of the Deployment                 
+spec:
+  selector:
+    matchLabels:
+      app: nginx # Selects Pods with labels matching "app: nginx"
+  replicas: 3 # Creates a replica set with 3 instances/pods                        
+  template: # Specifies the template for creating Pods                               
+    metadata:
+      labels:
+        app: nginx # The labels for the Pods created from this template                       
+    spec:
+      containers: # Specifies the containers to run in the Pod                     
+      - name: nginx # The name of the container                     
+        image: bradleywoods/bradley-woods-profile # The image to use for the container
+        ports:
+        - containerPort: 80 # Specifies the port to expose on the container

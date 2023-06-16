@@ -1,0 +1,13 @@
+apiVersion: v1 # Specifies the API version to use
+kind: Service # Specifies the kind of object to create, in this case, a Service                         
+metadata:
+  name: node-app-svc # The name of the Service
+  namespace: default # Specifies the namespace in which the Service should be created                 
+spec:
+  ports:
+  - nodePort: 30001 # Specifies nodePort for Service (range: 30000-32768)
+    port: 80 # The port on which the Service will listen
+    targetPort: 3000 # The port on the Pods to which the Service will forward traffic
+  selector:
+    app: node-app # Selects Pods with labels matching "app: nginx"
+  type: NodePort # Specifies the type of Service, in this case, NodePort

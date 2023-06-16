@@ -1,0 +1,19 @@
+apiVersion: apps/v1 # Specifies the API version to use
+kind: Deployment # Specifies the kind of object to create, in this case, a Deployment                         
+metadata:
+  name: node-app-deployment # The name of the Deployment                 
+spec:
+  selector:
+    matchLabels:
+      app: node-app # Selects Pods with labels matching "app: nginx"
+  replicas: 3 # Creates a replica set with 3 instances/pods                        
+  template: # Specifies the template for creating Pods                               
+    metadata:
+      labels:
+        app: node-app # The labels for the Pods created from this template                       
+    spec:
+      containers: # Specifies the containers to run in the Pod                     
+      - name: node-app # The name of the container                     
+        image: bradleywoods/node-app:v2 # The image to use for the container
+        ports:
+        - containerPort: 3000 # Specifies the port to expose on the container
